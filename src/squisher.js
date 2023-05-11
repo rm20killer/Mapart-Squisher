@@ -7,7 +7,7 @@ const { promisify } = require("util");
 
 const gzip = promisify(zlib.gzip);
 
-const blockID = 0;
+const blockID = 1;
 
 async function squish() {
   const data = await fs.readFile("./Data/In/mapWorking2_in.nbt");
@@ -46,7 +46,7 @@ async function squish() {
         continue;
       }
       // console.log(blockIndex + " " + x + " " + y + " " + z + " has been found and changed");
-      parsed.value.blocks.value.value[blockIndex].pos.value.value[1].value = 0;
+      parsed.value.blocks.value.value[blockIndex].pos.value.value[1].value = y;
     }
   }
   console.log(parsed.value.blocks.value.value);
