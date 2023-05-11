@@ -34,19 +34,22 @@ async function squish() {
 
 
 
-      //find the index where parsed.value.blocks.value.value.pos[0] === x && parsed.value.blocks.value.value.pos[2] === z
+      //find the index where parsed.value.blocks.value.value.pos[0] === x && parsed.value.blocks.value.value.pos[2] === z && parsed.value.blocks.value.value[blockIndex].state.value != 0
       const blockIndex = parsed.value.blocks.value.value.findIndex(
         (block) =>
           block.pos.value.value[0] === x &&
-          block.pos.value.value[2] === z
+          block.pos.value.value[2] === z &&
+          block.state.value != 0
       );
+      
 
       if (blockIndex === -1) {
         console.log(`Block not found at ${x}, ${y}, ${z}`);
         continue;
       }
       // console.log(blockIndex + " " + x + " " + y + " " + z + " has been found and changed");
-      parsed.value.blocks.value.value[blockIndex].pos.value.value[1].value = y;
+      parsed.value.blocks.value.value[blockIndex].pos.value.value[1] = y;
+      console.log(`new state: ${parsed.value.blocks.value.value[blockIndex].pos.value.value[0]}, ${parsed.value.blocks.value.value[blockIndex].pos.value.value[1]}, ${parsed.value.blocks.value.value[blockIndex].pos.value.value[2]} with state ${parsed.value.blocks.value.value[blockIndex].state.value}`)
     }
   }
   console.log(parsed.value.blocks.value.value);
